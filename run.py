@@ -1,8 +1,6 @@
-import request
 import time
 import tesserocr
 from PIL import Image
-from bs4 import BeautifulSoup
 from selenium import webdriver
 
 
@@ -16,7 +14,7 @@ def zhihulogin(username, password):
     driver.find_element_by_class_name('SignFlow-submitButton').click()
     # 截取当前页面
     driver.save_screenshot("1.png")
-    time.sleep(5)
+    time.sleep(3)
     try:
         # 验证码所在的位置
         element = driver.find_element_by_class_name('Captcha-englishImg')
@@ -48,6 +46,9 @@ def zhihulogin(username, password):
         image = image.point(table, '1')
         result = tesserocr.image_to_text(image)
         print('验证码是：', result)
+        driver.find_element_by_class_name('SignFlowInput-errorMask').send_keys(result)
+        driver.find_element_by_class_name('SignFlow-submitButton').click()
+        time.sleep(10)
 
 
     except Exception as e:
