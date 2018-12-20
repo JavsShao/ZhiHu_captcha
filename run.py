@@ -21,8 +21,8 @@ def zhihulogin(username, password):
         element = driver.find_element_by_class_name('Captcha-englishImg')
         location = element.location
         print(location)
-        size = location.size()
-        print(size)
+        siz = element.size
+        print(siz)
 
         # 计算出元素上下左右位置
         left = element.location['x']
