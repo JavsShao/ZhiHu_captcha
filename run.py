@@ -32,9 +32,15 @@ def zhihulogin(username, password):
         bottom = element.location['y'] + element.size['height']
 
         im = Image.open('1.png')
-        print('我已经')
         im = im.crop((left, top, right, bottom))
         im.save('2.png')
+
+        # 打开图片
+        image = Image.open('2.png')
+        result = tesserocr.image_to_text(image)
+        print('验证码是:', result)
+
+
     except Exception as e:
         print('出现错误了～')
         print(e)
