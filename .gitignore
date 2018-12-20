@@ -5,7 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
-
+.ieda/
 # Distribution / packaging
 .Python
 build/
