@@ -37,8 +37,17 @@ def zhihulogin(username, password):
 
         # 打开图片
         image = Image.open('2.png')
+        image = image.convert('L')
+        threshod = 127
+        table = []
+        for i in range(256):
+            if i < threshod:
+                table.append(0)
+            else:
+                table.append(1)
+        image = image.point(table, '1')
         result = tesserocr.image_to_text(image)
-        print('验证码是:', result)
+        print('验证码是：', result)
 
 
     except Exception as e:
