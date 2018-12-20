@@ -16,24 +16,27 @@ def zhihulogin(username, password):
     driver.find_element_by_class_name('SignFlow-submitButton').click()
     # 截取当前页面
     driver.save_screenshot("1.png")
+    time.sleep(5)
     try:
         # 验证码所在的位置
         element = driver.find_element_by_class_name('Captcha-englishImg')
         location = element.location
         print(location)
-        siz = element.size
-        print(siz)
+        size = element.size
+        print(size)
 
         # 计算出元素上下左右位置
         left = element.location['x']
         top = element.location['y']
-        right = element.location['x'] + element.size['y']
+        right = element.location['x'] + element.size['width']
         bottom = element.location['y'] + element.size['height']
 
-        im = Image.open('baidu.png')
+        im = Image.open('1.png')
+        print('我已经')
         im = im.crop((left, top, right, bottom))
-        im.save('baidu.png')
+        im.save('2.png')
     except Exception as e:
+        print('出现错误了～')
         print(e)
 
 
